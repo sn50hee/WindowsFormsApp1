@@ -16,14 +16,14 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
-            //MessageBox.Show("안녕하세요?");
-
-            /*
-             텍스트 박스에 메시지 출력
-             */
-            textBox_print.Text = "이것은\r\n멀티라인\r\n텍스트박스\r\n인데요.";
-
-
+            int a = 0;
+            int b = 0;
+            int c = 0;
+            // 주석 추가1
+            // 주석 추가2
+            // Youngwoong git test 성공!!
+            // 형진이가 남긴 주석
+            // 윤석희 주석
         }
     }
 }

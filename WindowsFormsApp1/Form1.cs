@@ -22,19 +22,19 @@ namespace WindowsFormsApp1
         {
             string result = "";
             switch (oper)
-            {   
+            {
+                case "success":
+                    result += "\r\n계산 완료";
+                    break;
                 case "+":
                     result = (x + y).ToString();
-                    result += "\r\n계산 완료";
-                    break;
+                    goto case "success";
                 case "-":
                     result = (x - y).ToString();
-                    result += "\r\n계산 완료";
-                    break;
+                    goto case "success";
                 case "*":
                     result = (x * y).ToString();
-                    result += "\r\n계산 완료";
-                    break;
+                    goto case "success";
                 case "/":
                     if (y == 0)
                     {
@@ -43,7 +43,7 @@ namespace WindowsFormsApp1
                     else
                     {
                         result = ((float)x / (float)y).ToString();
-                        result += "\r\n계산 완료";
+                        goto case "success";
                     }
                     
                     break;

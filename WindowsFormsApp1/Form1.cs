@@ -44,6 +44,18 @@ namespace WindowsFormsApp1
             return result;
         }
 
+        static double EvaluateExpression(string expression)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("expression", typeof(string), expression);
+
+            DataRow row = table.NewRow();
+            table.Rows.Add(row);
+
+            double result = double.Parse((string)row["expression"]);
+            return result;
+        }
+
         private void operator_btn_Click(object sender, EventArgs e)
         {
             string num_text = textBox_input.Text;
@@ -76,7 +88,7 @@ namespace WindowsFormsApp1
             {
                 textBox_input.Text = textBox_input.Text.Substring(0, textBox_input.Text.Length - 1);
             }
-        }//
+        }
 
         private void sign_Click(object sender, EventArgs e)
         {

@@ -58,7 +58,7 @@ namespace WindowsFormsApp1
             {
                 textBox_input.Text = textBox_input.Text.Substring(0, textBox_input.Text.Length - 1);
             }
-        }
+        }//
 
         private void sign_Click(object sender, EventArgs e)
         {

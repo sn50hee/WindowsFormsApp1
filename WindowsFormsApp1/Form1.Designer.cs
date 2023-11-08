@@ -41,18 +41,20 @@
             this.textBox_print.Multiline = true;
             this.textBox_print.Name = "textBox_print";
             this.textBox_print.Size = new System.Drawing.Size(426, 54);
-            this.textBox_print.TabIndex = 0;
+            this.textBox_print.TabIndex = 2;
             // 
             // button_input
             // 
             this.button_input.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.button_input.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button_input.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_input.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button_input.Location = new System.Drawing.Point(167, 103);
+            this.button_input.Location = new System.Drawing.Point(167, 106);
             this.button_input.Name = "button_input";
-            this.button_input.Size = new System.Drawing.Size(106, 44);
+            this.button_input.Size = new System.Drawing.Size(93, 44);
             this.button_input.TabIndex = 1;
             this.button_input.Text = "계산";
-            this.button_input.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button_input.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.button_input.UseVisualStyleBackColor = false;
             this.button_input.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -62,7 +64,7 @@
             this.textBox_input.Location = new System.Drawing.Point(11, 52);
             this.textBox_input.Name = "textBox_input";
             this.textBox_input.Size = new System.Drawing.Size(425, 27);
-            this.textBox_input.TabIndex = 2;
+            this.textBox_input.TabIndex = 0;
             // 
             // label1
             // 

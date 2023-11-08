@@ -56,7 +56,7 @@ namespace WindowsFormsApp1
             string[] num_arr = textBox_input.Text.Split(' ');
             string s_answer;
             s_answer = Calculation(double.Parse(num_arr[0]), double.Parse(num_arr[2]), num_arr[1]);
-            textBox_print.Text = (s_answer).ToString();
+            textBox_print.Text = s_answer;
         }
     }
 }

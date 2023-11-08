@@ -18,14 +18,31 @@ namespace WindowsFormsApp1
 
         }
 
-        private void button_input_click(object sender, EventArgs e)
-        {
-            // [계산] 버튼 클릭 시 이벤트
-        }
-
         /*
          * 윤석희 작성
          */
+        private void button_input_click(object sender, EventArgs e)
+        {
+            string line = textBox_print.Text;
+            line += textBox_input.Text;
+            textBox_input.Text = "";
+            double answer = EvaluateExpression(line);
+            textBox_print.Text = line + " = " + answer.ToString();
+        }
+
+        static double EvaluateExpression(string expression)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("expression", typeof(string), expression);
+
+            DataRow row = table.NewRow();
+            table.Rows.Add(row);
+
+            double result = double.Parse((string)row["expression"]);
+            return result;
+        }
+
+        
         private void operator_btn_Click(object sender, EventArgs e)
         {
             string num_text = textBox_input.Text;

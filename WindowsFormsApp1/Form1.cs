@@ -18,14 +18,32 @@ namespace WindowsFormsApp1
 
         }
 
+        /*
+        * 윤석희 작성
+        */
+
         private void button_input_click(object sender, EventArgs e)
         {
             // [계산] 버튼 클릭 시 이벤트
+            string line = textBox_print.Text;
+            line += textBox_input.Text;
+            textBox_input.Text = "";
+            double answer = EvaluateExpression(line);
+            textBox_print.Text = line + " = " + answer.ToString();
         }
 
-        /*
-         * 윤석희 작성
-         */
+        static double EvaluateExpression(string expression)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("expression", typeof(string), expression);
+
+            DataRow row = table.NewRow();
+            table.Rows.Add(row);
+
+            double result = double.Parse((string)row["expression"]);
+            return result;
+        }
+
         private void operator_btn_Click(object sender, EventArgs e)
         {
             string num_text = textBox_input.Text;
@@ -62,11 +80,7 @@ namespace WindowsFormsApp1
 
         private void sign_Click(object sender, EventArgs e)
         {
-            if (double.Parse(textBox_input.Text) > 0)
-                //textBox_input.Text += '-';
-                textBox_input.Text = (double.Parse(textBox_input.Text) * double.Parse("-1")).ToString();
-            else
-                // textBox_input.Text = textBox_input.Text.Substring(1, textBox_input.Text.Length - 1);
+            if (textBox_input.Text.Length > 0)
                 textBox_input.Text = (double.Parse(textBox_input.Text) * double.Parse("-1")).ToString();
         }
     }

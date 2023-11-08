@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
 
         }
 
-        public string Calculation(int x, int y, string oper)
+        public string Calculation(double x, double y, string oper)
         {
             string result = "";
             switch (oper)
@@ -42,10 +42,9 @@ namespace WindowsFormsApp1
                     }
                     else
                     {
-                        result = ((float)x / (float)y).ToString();
+                        result = (x / y).ToString();
                         goto case "success";
                     }
-                    
                     break;
             }
 
@@ -56,8 +55,7 @@ namespace WindowsFormsApp1
         {
             string[] num_arr = textBox_input.Text.Split(' ');
             string s_answer;
-            s_answer = Calculation(int.Parse(num_arr[0]), int.Parse(num_arr[2]), num_arr[1]);
-            // s_answer = Calculation(int.Parse(num_arr[0]), int.Parse(num_arr[1]), num_arr[2]);
+            s_answer = Calculation(double.Parse(num_arr[0]), double.Parse(num_arr[2]), num_arr[1]);
             textBox_print.Text = (s_answer).ToString();
         }
     }

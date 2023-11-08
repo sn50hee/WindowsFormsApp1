@@ -28,9 +28,19 @@ namespace WindowsFormsApp1
         {
             // line 변수에 출력화면의 텍스트를 가져옴
             string line = textBox_print.Text;
+
             // line 변수에 입력 화면 텍스트를 추가함
             // 출력 화면은 현재 입력한 값이 적용 되어 있지 않기 때문에 입력 화면의 텍스트를 맨 뒤에 추가
-            line += textBox_input.Text;
+            if (textBox_input.Text != "")
+            {
+                line += textBox_input.Text;
+            }
+            else
+            {
+                // 입력 화면에 숫자가 없으면 연산자 삭제
+                line = line.Remove(line.Length - 2);
+            }
+            
             // 입력 화면 초기화
             textBox_input.Text = "";
             // line의 결과값을 가져옴
@@ -79,6 +89,7 @@ namespace WindowsFormsApp1
             textBox_print.Text += result;
             // 입력 화면 초기화
             textBox_input.Text = "";
+            textBox_input.Focus();
         }
 
         /*

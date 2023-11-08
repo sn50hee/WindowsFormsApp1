@@ -21,6 +21,9 @@ namespace WindowsFormsApp1
         /*
          * 윤석희 작성
          */
+
+        // 계산 결과 반환 성공 여부 체크
+        bool result_output = false;
         private void button_input_click(object sender, EventArgs e)
         {
             // line 변수에 출력화면의 텍스트를 가져옴
@@ -31,9 +34,10 @@ namespace WindowsFormsApp1
             // 입력 화면 초기화
             textBox_input.Text = "";
             // line의 결과값을 가져옴
-            double answer = EvaluateExpression(line);
+            double answer = EvaluateExpression(line.Replace(",", ""));
             // 출력 화면 텍스트에 수식과 결과를 출력
-            textBox_print.Text = line + " = " + answer.ToString();
+            textBox_print.Text = line + " = " + string.Format("{0:#,##0}", answer);
+            result_output = true;
         }
 
         // 문자열을 수식으로 변환하고 결과값을 반환하는 함수
@@ -42,21 +46,10 @@ namespace WindowsFormsApp1
             // DataTable 클래스를 가져와서 table 인스턴스 생성
             DataTable table = new DataTable();
 
-            // "expression" 열 추가
-            // string 타입
-            // expression 변수에 저장된 문자열이 해당 열에 저장됨
-            // "expression" 열에 행이 추가 된다면 expression 수식이 적용
-            table.Columns.Add("expression", typeof(string), expression);
+            // Compute Method를 사용하여 문자열을 수식으로 변환 및 결과 반환
+            // Compute 사용 방법: Compute(문자열로 된 수식, 필터 조건)
+            double result = double.Parse(table.Compute(expression, "").ToString());
 
-            // 새로운 데이터 행 생성
-            DataRow row = table.NewRow();
-            // row 변수를 table에 추가
-            // "expression" 열에 expression 변수에 저장된 문자열이 수식화 되어 계산 결과가 출력
-            table.Rows.Add(row);
-
-            // 테이블에 저장된 "expression" 열의 값을 가져와 문자열로 변환
-            // 문자열을 double.Parse를 사용하여 실수(double)로 변환
-            double result = double.Parse((string)row["expression"]);
             return result;
         }
 
@@ -74,7 +67,7 @@ namespace WindowsFormsApp1
                 // sender를 Button으로 변환 후 text 값 가져옴
                 // sender의 text는 연산자(+, -, *, /, %)
                 // " "을 기준으로 입력 화면의 text와 연산자를 하나의 문자열로 만듦
-                result = num2.ToString() + " " + ((Button)sender).Text + " ";
+                result = num_text.ToString() + " " + ((Button)sender).Text + " ";
             }
             // 입력 화면의 텍스트가 숫자형이 아닐 때 실행
             else
@@ -113,9 +106,50 @@ namespace WindowsFormsApp1
             // 입력 화면에 text가 입력이 되어 있을 시 실행
             if (textBox_input.Text.Length > 0)
             {
-                // 입력 화면에 있는 숫자에 -1을 곱하여 -, + 기로 변환
+                // 입력 화면에 있는 숫자에 -1을 곱하여 -, + 변환
                 textBox_input.Text = (double.Parse(textBox_input.Text) * double.Parse("-1")).ToString();
             }
+        }
+
+        // 숫자에 , 추가
+        // 출처: https://shanael.tistory.com/88
+        string prevValue = "";
+        private void textBox_input_TextChanged(object sender, EventArgs e)
+        {
+            // 반환된 계산 결과가 있을 때 출력 화면 초기화
+            if (result_output == true)
+            {
+                textBox_print.Text = "";
+                result_output= false;
+            }
+            // sender를 TextBox로 캐스팅
+            TextBox textBox = sender as TextBox;
+
+            // textBox의 text를 가져와서 ,를 모두 제거한 후 text 변수에 저장
+            string text = textBox.Text.Replace(",", "");
+
+            double num = 0;
+
+            // text가 숫자형일 때만 실행
+            if (double.TryParse(text, out num))
+            {
+                // num을 특정한 형태가 있는 문자열로 변환
+                // {0:#,##0}: 숫자를 천 단위 구분 기호(쉼표)가 있는 형태로 표시
+                textBox.Text = string.Format("{0:#,##0}", num);
+                // 텍스트 상자의 커서를 항상 텍스트의 끝으로 이동
+                textBox.SelectionStart = textBox.TextLength;
+                // 커서 선택 길이를 0으로 설정
+                // 사용자가 새로운 입력을 시작할 때 선택된 텍스트가 없도록 함
+                textBox.SelectionLength = 0;
+            }
+            // text가 숫자형이 아니면 실행
+            // else를 쓰지 않은 이유는 textBox 초기화 때문
+            else if (textBox.Text.Length > 0)
+            {
+                //숫자형태의 값이 아니면 이전값으로 설정
+                textBox.Text = prevValue;
+            }
+                prevValue = textBox.Text;
         }
     }
 }

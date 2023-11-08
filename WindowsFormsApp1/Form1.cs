@@ -18,45 +18,9 @@ namespace WindowsFormsApp1
 
         }
 
-        public string Calculation(double x, double y, string oper)
+        private void button_input_click(object sender, EventArgs e)
         {
-            string result = "";
-            switch (oper)
-            {
-                case "success":
-                    result += "\r\n계산 완료";
-                    break;
-                case "+":
-                    result = (x + y).ToString();
-                    goto case "success";
-                case "-":
-                    result = (x - y).ToString();
-                    goto case "success";
-                case "*":
-                    result = (x * y).ToString();
-                    goto case "success";
-                case "/":
-                    if (y == 0)
-                    {
-                        MessageBox.Show("0으로 나눌 수 없습니다.");
-                    }
-                    else
-                    {
-                        result = (x / y).ToString();
-                        goto case "success";
-                    }
-                    break;
-            }
-
-            return result;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string[] num_arr = textBox_input.Text.Split(' ');
-            string s_answer;
-            s_answer = Calculation(double.Parse(num_arr[0]), double.Parse(num_arr[2]), num_arr[1]);
-            textBox_print.Text = s_answer;
+            // [계산] 버튼 클릭 시 이벤트
         }
     }
 }

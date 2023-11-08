@@ -23,6 +23,10 @@ namespace WindowsFormsApp1
             // [계산] 버튼 클릭 시 이벤트
         }
 
+
+        /*
+         * 윤석희 작성
+         */
         private void operator_btn_Click(object sender, EventArgs e)
         {
             string num_text = textBox_input.Text;

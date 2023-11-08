@@ -106,6 +106,7 @@ namespace WindowsFormsApp1
             this.plus.Text = "+";
             this.plus.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.plus.UseVisualStyleBackColor = false;
+            this.plus.Click += new System.EventHandler(this.operator_btn_Click);
             // 
             // minus
             // 
@@ -121,6 +122,7 @@ namespace WindowsFormsApp1
             this.minus.Text = "-";
             this.minus.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.minus.UseVisualStyleBackColor = false;
+            this.minus.Click += new System.EventHandler(this.operator_btn_Click);
             // 
             // mult
             // 
@@ -136,6 +138,7 @@ namespace WindowsFormsApp1
             this.mult.Text = "*";
             this.mult.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.mult.UseVisualStyleBackColor = false;
+            this.mult.Click += new System.EventHandler(this.operator_btn_Click);
             // 
             // div
             // 
@@ -151,6 +154,7 @@ namespace WindowsFormsApp1
             this.div.Text = "/";
             this.div.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.div.UseVisualStyleBackColor = false;
+            this.div.Click += new System.EventHandler(this.operator_btn_Click);
             // 
             // remind
             // 
@@ -166,6 +170,7 @@ namespace WindowsFormsApp1
             this.remind.Text = "%";
             this.remind.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.remind.UseVisualStyleBackColor = false;
+            this.remind.Click += new System.EventHandler(this.operator_btn_Click);
             // 
             // del_all
             // 

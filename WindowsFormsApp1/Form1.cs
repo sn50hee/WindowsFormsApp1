@@ -22,5 +22,22 @@ namespace WindowsFormsApp1
         {
             // [계산] 버튼 클릭 시 이벤트
         }
+
+        private void operator_btn_Click(object sender, EventArgs e)
+        {
+            string num_text = textBox_input.Text;
+            double num2;
+            string result = "";
+            if (double.TryParse(num_text, out num2) != false)
+            {
+                result = num2.ToString() + " " + ((Button)sender).Text + " ";
+            }
+            else
+            {
+                MessageBox.Show("숫자를 입력해주세요.");
+            }
+            textBox_print.Text += result;
+            textBox_input.Text = "";
+        }
     }
 }

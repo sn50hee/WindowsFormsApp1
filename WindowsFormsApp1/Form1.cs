@@ -32,7 +32,7 @@ namespace WindowsFormsApp1
             // 출력 화면은 현재 입력한 값이 적용 되어 있지 않기 때문에 입력 화면의 텍스트를 맨 뒤에 추가
             if (textBox_input.Text != "")
             {
-                line += textBox_input.Text;
+                line += textBox_input.Text+" ";
             }
             else
             {
@@ -53,17 +53,16 @@ namespace WindowsFormsApp1
                 if (answer_str.Contains("."))
                 {
                     string[] answer_arry = answer.ToString().Split('.');
-                    string result = line + " = " + string.Format("{0:#,##0}", answer_arry[0]);
+                    string result = line + "= " + string.Format("{0:#,##0}", answer_arry[0]);
                     textBox_print.Text = result + "." + answer_arry[1];
                 }
                 else
                 {
                     // 출력 화면 텍스트에 수식과 결과를 출력
-                    textBox_print.Text = line + " = " + string.Format("{0:#,##0}", answer);
-                    result_output=true;
+                    textBox_print.Text = line + "= " + string.Format("{0:#,##0}", answer);
                     // 김영웅 추가
                     // 계산 완료시 기록 저장 
-                    resultArray.ArrayAdd(line + " = " + string.Format("{0:#,##0}", answer));
+                    resultArray.ArrayAdd(line + "= " + string.Format("{0:#,##0}", answer));
                 }
             }
             else
@@ -71,6 +70,7 @@ namespace WindowsFormsApp1
                 textBox_input.Text = "";
                 textBox_print.Text = "";
             }
+            result_output = true;
         }
 
         // 문자열을 수식으로 변환하고 결과값을 반환하는 함수
@@ -167,13 +167,18 @@ namespace WindowsFormsApp1
             decimal num = 0;
 
 
+
             // text가 숫자형일 때만 실행
             if (decimal.TryParse(text, out num) || text == "." || (text.Length > 1 && text.EndsWith(".")))
             {
-                // 
-                if (text.Length > 1)
+                if(text.Length > 1)
                 {
-                    if (text.Substring(text.Length - 1) == ".")
+                    string print_text = textBox_print.Text;
+                    if (print_text.Length > 2 && print_text.Substring(print_text.Length - 2) == "% ")
+                    {
+                        textBox.Text = string.Format("{0:#,##0}", num);
+                    }
+                    else if (text.Substring(text.Length - 1) == ".")
                     {
                         textBox.Text = string.Format("{0:#,##0}", num) + ".";
                     }
@@ -200,7 +205,7 @@ namespace WindowsFormsApp1
                     // 사용자가 새로운 입력을 시작할 때 선택된 텍스트가 없도록 함
                     textBox.SelectionLength = 0;
                 }
-
+                
 
             }
             // text가 숫자형이 아니면 실행
@@ -262,20 +267,24 @@ namespace WindowsFormsApp1
         }
         // 크기가 5인 LimitArray 클래스의 인스턴스를 생성하여 resultArray에 저장
         private LimitArray resultArray = new LimitArray(5);
-        private void history_Click(object sender, EventArgs e) //계산결과 확인 
+        private void history_Click(object sender, EventArgs e) //계산결과 확인
         {
             // 저장된 계산 결과 가져오기
             string[] record_array = resultArray.PushArray();
-
             if (record_array.All(string.IsNullOrEmpty))
             {
-                MessageBox.Show("계산 기록이 없습니다.","계산 기록");
+                MessageBox.Show("계산 기록이 없습니다.", "계산 기록");
             }
             else
             {
                 Array.Reverse(record_array); // 주석 해제시 새 기록이 위에서 부터 출력
                 record_array = record_array.Where(str => !string.IsNullOrWhiteSpace(str)).ToArray();
-                string cal_record = string.Join("\n", record_array.Select((result, index) => $"{record_array.Length - index}. {result}")); MessageBox.Show(cal_record, "계산 기록");
+                string cal_record = string.Join("\n", record_array.Select((resultArray, index) => $"{record_array.Length - index}. {resultArray}"));
+                var result = MessageBox.Show($"{cal_record}\n\n계산 기록을 삭제하시겠습니까?", "계산 기록", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    resultArray = new LimitArray(5);
+                }
             }
         }
 

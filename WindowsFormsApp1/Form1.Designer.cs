@@ -63,6 +63,8 @@ namespace WindowsFormsApp1
             this.button_input.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(147)))), ((int)(((byte)(60)))));
             this.button_input.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button_input.FlatAppearance.BorderSize = 0;
+
+            this.button_input.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_input.Font = new System.Drawing.Font("Malgun Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button_input.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button_input.Location = new System.Drawing.Point(3, 351);
@@ -95,6 +97,8 @@ namespace WindowsFormsApp1
             this.plus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(147)))), ((int)(((byte)(60)))));
             this.plus.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.plus.FlatAppearance.BorderSize = 0;
+
+            this.plus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.plus.Font = new System.Drawing.Font("Malgun Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.plus.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.plus.Location = new System.Drawing.Point(161, 351);
@@ -112,6 +116,8 @@ namespace WindowsFormsApp1
             this.minus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(147)))), ((int)(((byte)(60)))));
             this.minus.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.minus.FlatAppearance.BorderSize = 0;
+
+            this.minus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minus.Font = new System.Drawing.Font("Malgun Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.minus.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.minus.Location = new System.Drawing.Point(161, 299);
@@ -129,6 +135,8 @@ namespace WindowsFormsApp1
             this.mult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(147)))), ((int)(((byte)(60)))));
             this.mult.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.mult.FlatAppearance.BorderSize = 0;
+
+            this.mult.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mult.Font = new System.Drawing.Font("Malgun Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.mult.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.mult.Location = new System.Drawing.Point(161, 246);
@@ -146,6 +154,8 @@ namespace WindowsFormsApp1
             this.div.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(147)))), ((int)(((byte)(60)))));
             this.div.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.div.FlatAppearance.BorderSize = 0;
+
+            this.div.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.div.Font = new System.Drawing.Font("Malgun Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.div.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.div.Location = new System.Drawing.Point(161, 194);
@@ -163,6 +173,8 @@ namespace WindowsFormsApp1
             this.remind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(147)))), ((int)(((byte)(60)))));
             this.remind.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.remind.FlatAppearance.BorderSize = 0;
+
+            this.remind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.remind.Font = new System.Drawing.Font("Malgun Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.remind.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.remind.Location = new System.Drawing.Point(161, 141);
@@ -180,6 +192,8 @@ namespace WindowsFormsApp1
             this.del_all.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.del_all.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.del_all.FlatAppearance.BorderSize = 0;
+
+            this.del_all.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.del_all.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.del_all.Location = new System.Drawing.Point(3, 141);
             this.del_all.Margin = new System.Windows.Forms.Padding(1);
@@ -196,6 +210,8 @@ namespace WindowsFormsApp1
             this.del_one.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.del_one.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.del_one.FlatAppearance.BorderSize = 0;
+
+            this.del_one.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.del_one.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.del_one.Location = new System.Drawing.Point(3, 194);
             this.del_one.Margin = new System.Windows.Forms.Padding(1);
@@ -212,6 +228,8 @@ namespace WindowsFormsApp1
             this.sign.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.sign.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.sign.FlatAppearance.BorderSize = 0;
+
+            this.sign.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sign.Font = new System.Drawing.Font("Malgun Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.sign.Location = new System.Drawing.Point(3, 246);
             this.sign.Margin = new System.Windows.Forms.Padding(1);
@@ -228,6 +246,8 @@ namespace WindowsFormsApp1
             this.history.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.history.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.history.FlatAppearance.BorderSize = 0;
+
+            this.history.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.history.Font = new System.Drawing.Font("Malgun Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.history.Location = new System.Drawing.Point(3, 299);
             this.history.Margin = new System.Windows.Forms.Padding(1);

@@ -135,36 +135,68 @@ namespace WindowsFormsApp1
             if (result_output == true)
             {
                 textBox_print.Text = "";
-                result_output= false;
+                result_output = false;
             }
             // sender를 TextBox로 캐스팅
             TextBox textBox = sender as TextBox;
-
             // textBox의 text를 가져와서 ,를 모두 제거한 후 text 변수에 저장
             string text = textBox.Text.Replace(",", "");
 
             double num = 0;
 
+
             // text가 숫자형일 때만 실행
             if (double.TryParse(text, out num))
             {
-                // num을 특정한 형태가 있는 문자열로 변환
-                // {0:#,##0}: 숫자를 천 단위 구분 기호(쉼표)가 있는 형태로 표시
-                textBox.Text = string.Format("{0:#,##0}", num);
-                // 텍스트 상자의 커서를 항상 텍스트의 끝으로 이동
-                textBox.SelectionStart = textBox.TextLength;
-                // 커서 선택 길이를 0으로 설정
-                // 사용자가 새로운 입력을 시작할 때 선택된 텍스트가 없도록 함
-                textBox.SelectionLength = 0;
+                if (text.Length > 1)
+                {
+                    if (text.Substring(text.Length - 1) == ".")
+                    {
+                        textBox.Text = string.Format("{0:#,##0}", num) + ".";
+                    }
+                    else if (text.Substring(text.Length - 1) != "." && text.Remove(1).Contains(".") == false)
+                    {
+                        // num을 특정한 형태가 있는 문자열로 변환
+                        // {0:#,##0}: 숫자를 천 단위 구분 기호(쉼표)가 있는 형태로 표시
+                        if (num % 1 == 0)
+                        {
+                            // 정수일 경우
+                            textBox.Text = string.Format("{0:#,##0}", num);
+                        }
+
+                    }
+                    else if (text.Contains("."))
+                    {
+                        string[] textArry = text.Split('.');
+                        textBox.Text = string.Format("{0:#,##0}", textArry[0]);
+                        textBox.Text += "." + textArry[1];
+                    }
+                    // 텍스트 상자의 커서를 항상 텍스트의 끝으로 이동
+                    textBox.SelectionStart = textBox.TextLength;
+                    // 커서 선택 길이를 0으로 설정
+                    // 사용자가 새로운 입력을 시작할 때 선택된 텍스트가 없도록 함
+                    textBox.SelectionLength = 0;
+                }
+
+
             }
             // text가 숫자형이 아니면 실행
             // else를 쓰지 않은 이유는 textBox 초기화 때문
-            else if (textBox.Text.Length > 0)
+            else if (textBox.Text.Length > 0 && textBox.Text != "-")
             {
-                //숫자형태의 값이 아니면 이전값으로 설정
-                textBox.Text = prevValue;
+                if (text.Length == 1 && text == ".")
+                {
+                    textBox.Text = "0.";
+                    textBox.SelectionStart = textBox.TextLength;
+                    textBox.SelectionLength = 0;
+                }
+                else
+                {
+                    //숫자형태의 값이 아니면 이전값으로 설정
+                    textBox.Text = prevValue;
+                }
             }
-                prevValue = textBox.Text;
+            prevValue = textBox.Text;
         }
         ////////////////////////////////////////////////////
         ///// 김영웅 작성

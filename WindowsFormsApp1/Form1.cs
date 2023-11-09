@@ -21,14 +21,12 @@ namespace WindowsFormsApp1
         /*
          * 윤석희 작성
          */
-
         // 계산 결과 반환 성공 여부 체크
         bool result_output = false;
         private void button_input_click(object sender, EventArgs e)
         {
             // line 변수에 출력화면의 텍스트를 가져옴
             string line = textBox_print.Text;
-
             // line 변수에 입력 화면 텍스트를 추가함
             // 출력 화면은 현재 입력한 값이 적용 되어 있지 않기 때문에 입력 화면의 텍스트를 맨 뒤에 추가
             if (textBox_input.Text != "")
@@ -40,18 +38,23 @@ namespace WindowsFormsApp1
                 // 입력 화면에 숫자가 없으면 연산자 삭제
                 line = line.Remove(line.Length - 2);
             }
-            
-            // 입력 화면 초기화
-            textBox_input.Text = "";
-            // line의 결과값을 가져옴
-            double answer = EvaluateExpression(line.Replace(",", ""));
-            // 출력 화면 텍스트에 수식과 결과를 출력
-            textBox_print.Text = line + " = " + string.Format("{0:#,##0}", answer);
-            result_output = true;
-            // 김영웅 추가
-            // 계산 완료시 기록 저장 
-            resultArray.ArrayAdd(line + " = " + string.Format("{0:#,##0}", answer));
-
+            // 0으로 나누면 화면 초기화
+            if (div_zero_check(line) == false)
+            {
+                // 입력 화면 초기화
+                textBox_input.Text = "";
+                // line의 결과값을 가져옴
+                double answer = EvaluateExpression(line.Replace(",", ""));
+                // 출력 화면 텍스트에 수식과 결과를 출력
+                textBox_print.Text = line + " = " + string.Format("{0:#,##0}", answer);
+                result_output = true;
+                resultArray.ArrayAdd(line + " = " + string.Format("{0:#,##0}", answer));
+            }
+            else
+            {
+                textBox_input.Text = "";
+                textBox_print.Text = "";
+            }
         }
 
         // 문자열을 수식으로 변환하고 결과값을 반환하는 함수
@@ -126,8 +129,11 @@ namespace WindowsFormsApp1
             }
         }
 
-        // 숫자에 , 추가
-        // 출처: https://shanael.tistory.com/88
+        // 숫자 세 자리마다 , 추가
+        /*
+         *  윤석희 작성
+         *
+         */
         string prevValue = "";
         private void textBox_input_TextChanged(object sender, EventArgs e)
         {
@@ -148,6 +154,7 @@ namespace WindowsFormsApp1
             // text가 숫자형일 때만 실행
             if (double.TryParse(text, out num))
             {
+                // 
                 if (text.Length > 1)
                 {
                     if (text.Substring(text.Length - 1) == ".")
@@ -250,5 +257,31 @@ namespace WindowsFormsApp1
             MessageBox.Show(cal_record, "계산 기록"); // 메세지 박스
         }
         ////////////////////////////////////////////////////
+
+
+        /*
+         * 정형진 작성
+         *
+         */
+        // 0으로 나누는지 체크하는 함수
+        private bool div_zero_check(string line)
+        {
+            // 0으로 나누면 true 값 입력
+            bool yn = line.Contains("/ 0");
+            bool yn2 = line.Contains("% 0");
+            // 오류 출력, true 반환
+            if (yn == true)
+            {
+                MessageBox.Show("0으로 나누기 연산은 할 수 없습니다. ");
+                return yn;
+            }
+            else if (yn2 == true)
+            {
+                MessageBox.Show("0으로 나머지 연산은 할 수 없습니다. ");
+                return yn2;
+            }
+            // 이상 없으면 false 반환
+            return false;
+        }
     }
 }

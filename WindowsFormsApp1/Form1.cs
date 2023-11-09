@@ -60,6 +60,7 @@ namespace WindowsFormsApp1
                 {
                     // 출력 화면 텍스트에 수식과 결과를 출력
                     textBox_print.Text = line + " = " + string.Format("{0:#,##0}", answer);
+                    result_output=true;
                     // 김영웅 추가
                     // 계산 완료시 기록 저장 
                     resultArray.ArrayAdd(line + " = " + string.Format("{0:#,##0}", answer));

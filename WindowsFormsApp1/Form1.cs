@@ -184,6 +184,13 @@ namespace WindowsFormsApp1
                     }
                     else if (text.Substring(text.Length - 1) != "." && text.Remove(1).Contains(".") == false)
                     {
+                        //if (text.Substring(text.Length - 1) == "0")
+                        //{
+                        //    string[] textArry = text.Split('.');
+                        //    textBox.Text = string.Format("{0:#,##0}", textArry[0]);
+                        //    textBox.Text += "." + textArry[1];
+                        //}
+
                         // num을 특정한 형태가 있는 문자열로 변환
                         // {0:#,##0}: 숫자를 천 단위 구분 기호(쉼표)가 있는 형태로 표시
                         if (num % 1 == 0)

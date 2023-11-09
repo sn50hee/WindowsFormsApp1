@@ -91,6 +91,7 @@ namespace WindowsFormsApp1
             this.textBox_input.TabIndex = 0;
             this.textBox_input.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBox_input.TextChanged += new System.EventHandler(this.textBox_input_TextChanged);
+            this.textBox_input.MaxLength = 16;
             // 
             // plus
             // 
@@ -301,4 +302,3 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.Button history;
     }
 }
-

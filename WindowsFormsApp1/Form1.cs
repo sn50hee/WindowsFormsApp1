@@ -48,9 +48,22 @@ namespace WindowsFormsApp1
                 // line의 결과값을 가져옴
                 decimal answer = EvaluateExpression(line.Replace(",", ""));
                 // 출력 화면 텍스트에 수식과 결과를 출력
-                textBox_print.Text = line + " = " + string.Format("{0:#,##0}", answer);
-                result_output = true;
-                resultArray.ArrayAdd(line + " = " + string.Format("{0:#,##0}", answer));
+                string answer_str = answer.ToString();
+                // 실수일 때 출력 형식 변환
+                if (answer_str.Contains("."))
+                {
+                    string[] answer_arry = answer.ToString().Split('.');
+                    string result = line + " = " + string.Format("{0:#,##0}", answer_arry[0]);
+                    textBox_print.Text = result + "." + answer_arry[1];
+                }
+                else
+                {
+                    // 출력 화면 텍스트에 수식과 결과를 출력
+                    textBox_print.Text = line + " = " + string.Format("{0:#,##0}", answer);
+                    // 김영웅 추가
+                    // 계산 완료시 기록 저장 
+                    resultArray.ArrayAdd(line + " = " + string.Format("{0:#,##0}", answer));
+                }
             }
             else
             {
@@ -276,8 +289,8 @@ namespace WindowsFormsApp1
         private bool div_zero_check(string line)
         {
             // 0으로 나누면 true 값 입력
-            bool yn = line.Contains("/ 0");
-            bool yn2 = line.Contains("% 0");
+            bool yn = line.Contains("/ 0 ");
+            bool yn2 = line.Contains("% 0 ");
             // 오류 출력, true 반환
             if (yn == true)
             {

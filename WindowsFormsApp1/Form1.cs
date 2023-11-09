@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,7 +45,7 @@ namespace WindowsFormsApp1
             // 입력 화면 초기화
             textBox_input.Text = "";
             // line의 결과값을 가져옴
-            double answer = EvaluateExpression(line.Replace(",", ""));
+            decimal answer = EvaluateExpression(line.Replace(",", ""));
             // 출력 화면 텍스트에 수식과 결과를 출력
             textBox_print.Text = line + " = " + string.Format("{0:#,##0}", answer);
             result_output = true;
@@ -55,14 +56,14 @@ namespace WindowsFormsApp1
         }
 
         // 문자열을 수식으로 변환하고 결과값을 반환하는 함수
-        static double EvaluateExpression(string expression)
+        static decimal EvaluateExpression(string expression)
         {
             // DataTable 클래스를 가져와서 table 인스턴스 생성
             DataTable table = new DataTable();
 
             // Compute Method를 사용하여 문자열을 수식으로 변환 및 결과 반환
             // Compute 사용 방법: Compute(문자열로 된 수식, 필터 조건)
-            double result = double.Parse(table.Compute(expression, "").ToString());
+            decimal result = decimal.Parse(table.Compute(expression, "").ToString());
 
             return result;
         }
@@ -72,11 +73,11 @@ namespace WindowsFormsApp1
         {
             // 입력 화면의 텍스트를 가져옴
             string num_text = textBox_input.Text;
-            double num2;
+            decimal num2;
             string result = "";
 
             // 입력 화면의 텍스트가 숫자형 일 때 실행
-            if (double.TryParse(num_text, out num2) != false)
+            if (decimal.TryParse(num_text, out num2) != false)
             {
                 // sender를 Button으로 변환 후 text 값 가져옴
                 // sender의 text는 연산자(+, -, *, /, %)
@@ -122,7 +123,7 @@ namespace WindowsFormsApp1
             if (textBox_input.Text.Length > 0)
             {
                 // 입력 화면에 있는 숫자에 -1을 곱하여 -, + 변환
-                textBox_input.Text = (double.Parse(textBox_input.Text) * double.Parse("-1")).ToString();
+                textBox_input.Text = (decimal.Parse(textBox_input.Text) * decimal.Parse("-1")).ToString();
             }
         }
 
@@ -143,10 +144,10 @@ namespace WindowsFormsApp1
             // textBox의 text를 가져와서 ,를 모두 제거한 후 text 변수에 저장
             string text = textBox.Text.Replace(",", "");
 
-            double num = 0;
+            decimal num = 0;
 
             // text가 숫자형일 때만 실행
-            if (double.TryParse(text, out num))
+            if (decimal.TryParse(text, out num) || text == "." || (text.Length > 1 && text.EndsWith(".")))
             {
                 // num을 특정한 형태가 있는 문자열로 변환
                 // {0:#,##0}: 숫자를 천 단위 구분 기호(쉼표)가 있는 형태로 표시
@@ -211,12 +212,19 @@ namespace WindowsFormsApp1
         {
             // 저장된 계산 결과 가져오기
             string[] record_array = resultArray.PushArray();
-            //Array.Reverse(items); // 주석 해제시 새 기록이 위에서 부터 출력
 
-            // 계산 결과를 개행 문자로 연결한 문자열 생성
-            string cal_record = string.Join("\n", record_array);
-            MessageBox.Show(cal_record, "계산 기록"); // 메세지 박스
+            if (record_array.All(string.IsNullOrEmpty))
+            {
+                MessageBox.Show("계산 기록이 없습니다.","계산 기록");
+            }
+            else
+            {
+                Array.Reverse(record_array); // 주석 해제시 새 기록이 위에서 부터 출력
+                record_array = record_array.Where(str => !string.IsNullOrWhiteSpace(str)).ToArray();
+                string cal_record = string.Join("\n", record_array.Select((result, index) => $"{record_array.Length - index}. {result}")); MessageBox.Show(cal_record, "계산 기록");
+            }
         }
+
         ////////////////////////////////////////////////////
     }
 }
